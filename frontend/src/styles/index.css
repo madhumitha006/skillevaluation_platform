@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+  }
+
+  body {
+    @apply bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 text-gray-100;
+    @apply font-sans antialiased;
+    transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  body.light {
+    @apply bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+
+  h1 { @apply text-5xl md:text-6xl leading-tight; }
+  h2 { @apply text-4xl md:text-5xl leading-tight; }
+  h3 { @apply text-3xl md:text-4xl leading-snug; }
+  h4 { @apply text-2xl md:text-3xl leading-snug; }
+  h5 { @apply text-xl md:text-2xl leading-normal; }
+  h6 { @apply text-lg md:text-xl leading-normal; }
+}
+
+@layer components {
+  /* Glassmorphism Cards */
+  .glass {
+    @apply bg-white/10 backdrop-blur-2xl;
+    @apply border border-white/20;
+    @apply shadow-xl shadow-black/10;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glass-hover {
+    @apply hover:bg-white/15 hover:bg-opacity-20;
+    @apply hover:border-white/30 hover:border-opacity-30;
+    @apply hover:shadow-2xl hover:shadow-electric-500/20;
+  }
+
+  .glass-strong {
+    @apply bg-white/20 backdrop-blur-3xl;
+    @apply border border-white/30;
+  }
+  
+  /* Glow Effects */
+  .glow-electric {
+    @apply shadow-lg shadow-electric-500/30;
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .glow-violet {
+    @apply shadow-lg shadow-violet-500/30;
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glow-hover {
+    @apply hover:shadow-2xl hover:shadow-electric-500/50;
+  }
+
+  /* Button Styles */
+  .btn-glow {
+    @apply transition-all duration-300;
+    @apply hover:shadow-lg hover:shadow-electric-500/50 hover:-translate-y-0.5;
+  }
+
+  .btn-glass {
+    @apply glass glass-hover;
+    @apply px-6 py-3 rounded-xl font-semibold;
+    @apply hover:-translate-y-1 active:translate-y-0;
+  }
+
+  /* Card Styles */
+  .card-lift {
+    @apply transition-all duration-300;
+    @apply hover:-translate-y-2 hover:shadow-2xl;
+  }
+
+  .card-glass {
+    @apply glass rounded-2xl p-6;
+    @apply hover:bg-white/15;
+  }
+
+  /* Loading States */
+  .skeleton {
+    @apply animate-pulse bg-white/10 rounded;
+  }
+
+  .skeleton-shimmer {
+    @apply relative overflow-hidden bg-white/10;
+  }
+
+  .skeleton-shimmer::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+  }
+
+  /* Typography */
+  .text-gradient {
+    @apply bg-gradient-to-r from-electric-400 to-violet-500 bg-clip-text text-transparent;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px rgba(58, 129, 255, 0.5);
+  }
+
+  /* Spacing System */
+  .space-xs { @apply gap-2; }
+  .space-sm { @apply gap-3; }
+  .space-md { @apply gap-4; }
+  .space-lg { @apply gap-6; }
+  .space-xl { @apply gap-8; }
+  .space-2xl { @apply gap-12; }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite linear;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  33% {
+    transform: translate(30px, -30px) rotate(120deg);
+  }
+  66% {
+    transform: translate(-20px, 20px) rotate(240deg);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-20px, -20px) scale(1.1);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 20s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 25s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 10s ease-in-out infinite;
+}

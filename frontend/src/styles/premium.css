@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-gray-100;
+    @apply font-sans antialiased;
+  }
+
+  body.light {
+    @apply bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 text-gray-900;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+  
+  .btn-premium {
+    @apply bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold px-6 py-3 rounded-xl;
+  }
+
+  .card-premium {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6;
+  }
+}
